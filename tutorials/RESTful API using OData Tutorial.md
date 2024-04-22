@@ -9,13 +9,13 @@ The service will manager customers and orders saved in an in-memory database.
 | Description | Method | URI |
 | ------ | --- | ----------- |
 | Return all customers | GET | /Customers |
-| Return customer by key |GET | /Customers({key}) | 
+| Return a customer by key |GET | /Customers({key}) | 
 | Add a customer | POST | /Customers |
 | Patch an existing customer | PATCH | /Customers({key}) |
 | Update an existing customer | PUT | /Customers({key}) |
 | Delete a customer | DELETE | /Customers({key}) |
-| Return all Orders | GET | /Orders |
-| Return order by key | GET | /Orders({key}) |
+| Return all orders | GET | /Orders |
+| Return an order by key | GET | /Orders({key}) |
 | Add an order | POST | /Orders |
 | Patch an existing order | PATCH | /Orders({key}) |
 | Update an existing order | PUT | /Orders({key}) |
@@ -39,6 +39,27 @@ The service will manager customers and orders saved in an in-memory database.
   - Select **Create**.
 
   ![Screenshot of creating aspnetcore project using vs 2022 targeting net core 8.0 framework additional info](images/aspnet-core-odata-8-create-project-vs2022-additional-info.png)
+
+If you're using VS Code, you can execute the following set of commands from a Windows command prompt to set up the ASP.NET Core application:
+```
+mkdir FS20240422
+
+cd FS20240422
+
+dotnet new web --name FS20240422
+
+dotnet new sln --name FS20240422
+
+dotnet sln add FS20240422\FS20240422.csproj
+```
+Where,
+- The first command creates the _**FS20240422**_ directory
+- The second command changes current directory  to _**FS20240422**_
+- The third command creates an empty ASP.NET Core project
+- The fourth command creates a solution named _**FS20240422**_
+- The fifth command adds the created ASP.NET Core project to the solution.
+
+You can then open _**FS20240422**_ directory from VS Code and perform the steps that follow from that development environment.
 
 ## Add data models
 In **Solution Explorer**, right-click the project. Select **Add->New Folder** and name the folder **Models**.
@@ -96,6 +117,8 @@ Install-Package Microsoft.EntityFrameworkCore.InMemory
 ```
 
 ### Add `Microsoft.EntityFrameworkCore.InMemory` using .NET Core CLI
+
+**NOTE:** You would need to switch directory to the _**FS20240422**_ project directory to execute the .NET Core CLI commands.
 
 ```
 dotnet add package Microsoft.EntityFrameworkCore.InMemory
@@ -160,7 +183,7 @@ Let's seed the database with some initial data. We will create a helper class fo
 
 In **Solution Explorer**, right-click the **Data** folder and select **Add->Class**. Name the class _**FsDbHelper.cs**_.
 
-Next, replace the contents of _****FsDbHelper.cs**_ with the following:
+Next, replace the contents of _**FsDbHelper.cs**_ with the following:
 ```csharp
 using FS20240422.Models;
 
